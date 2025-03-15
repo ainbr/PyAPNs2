@@ -1,18 +1,15 @@
 [build-system]
-requires = ["poetry_core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool]
-[tool.poetry]
+[project]
 name = "apns2"
 version = "0.7.1"
 description = "A python library for interacting with the Apple Push Notification Service via HTTP/2 protocol"
-readme = 'README.md'
-authors = [
-    "Sergey Petrov <me@pr0ger.prg>"
-]
+authors = [{ name = "Sergey Petrov", email = "me@pr0ger.prg" }]
+requires-python = ">=3.7"
+readme = "README.md"
 license = "MIT"
-
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
@@ -20,18 +17,19 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Topic :: Software Development :: Libraries"
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "cryptography>=1.7.2",
+    "httpx[http2]>=0.13.0",
+    "pyjwt>=2.0.0",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.7"
-cryptography = ">=1.7.2"
-httpx = {version = ">=0.13.0", extras = ["http2"] }
-pyjwt = ">=2.0.0"
-
-[tool.poetry.dev-dependencies]
-pytest = "*"
-freezegun = "*"
+[dependency-groups]
+dev = [
+    "pytest",
+    "freezegun",
+]
 
 [tool.mypy]
 python_version = "3.7"
